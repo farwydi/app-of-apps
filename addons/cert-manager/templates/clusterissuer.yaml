@@ -4,7 +4,7 @@
 {{- range $name, $issuer := index $.Values "letsencrypt" "issuers" }}
 ---
 apiVersion: cert-manager.io/v1alpha3
-kind: ClusterIssuer
+kind:   
 metadata:
   name: {{ $name }}
   annotations:
@@ -14,7 +14,7 @@ spec:
     email: {{ $issuer.email }}
     server: {{ $issuer.server }}
     privateKeySecretRef:
-      name: {{ $name }}
+      name: {{ $name }}-private-key
     {{ index $.Values "cert-manager" "clusterIssuers" "acme" | toYaml | nindent 4 }}
 {{- end }}
 {{- end }}

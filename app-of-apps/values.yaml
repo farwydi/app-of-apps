@@ -21,4 +21,12 @@ argocd: {}
 argocd-applicationset: {}
 argocd-notifications: {}
 
-cert-manager: {}
+cert-manager:
+  clusterIssuers:
+    acme:
+      solvers:
+        - http01:
+            ingress:
+              class: nginx
+    letsencrypt:
+      enabled: true

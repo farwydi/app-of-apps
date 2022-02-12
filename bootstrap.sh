@@ -2,4 +2,4 @@
 
 helm install argocd argo/argo-cd -n argo --create-namespace
 
-helm install app-of-apps ./app-of-apps -n argo
+helm upgrade --install  app-of-apps -n argo ./app-of-apps
