@@ -16,10 +16,14 @@ apps:
     enabled: true
   cert-manager:
     enabled: true
+  ingress-nginx:
+    enabled: true
 
 argocd: {}
 argocd-applicationset: {}
 argocd-notifications: {}
+
+ingress-nginx: {}
 
 cert-manager:
   clusterIssuers:
