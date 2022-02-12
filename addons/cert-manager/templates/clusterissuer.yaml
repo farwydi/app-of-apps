@@ -1,0 +1,23 @@
+{{- if index $.Values "cert-manager" "clusterIssuers" }}
+{{- if index $.Values "cert-manager" "clusterIssuers" "letsencrypt" }}
+{{- if index $.Values "cert-manager" "clusterIssuers" "letsencrypt" "enabled" }}
+{{- range $name, $issuer := index $.Values "letsencrypt" "issuers" }}
+---
+apiVersion: cert-manager.io/v1alpha3
+kind: ClusterIssuer
+metadata:
+  name: {{ $name }}
+  annotations:
+    argocd.argoproj.io/sync-wave: "5"
+spec:
+  acme:
+    email: {{ $issuer.email }}
+    server: {{ $issuer.server }}
+    privateKeySecretRef:
+      name: {{ $name }}
+    {{ index $.Values "cert-manager" "clusterIssuers" "acme" | toYaml | nindent 4 }}
+{{- end }}
+{{- end }}
+{{- end }}
+{{- end }}
+{{- end }}

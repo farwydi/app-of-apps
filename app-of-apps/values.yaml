@@ -14,6 +14,8 @@ spec:
 apps:
   argocd:
     enabled: true
+  cert-manager:
+    enabled: true
 
 argocd: {}
 argocd-applicationset: {}
