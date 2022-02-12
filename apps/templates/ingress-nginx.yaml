@@ -1,0 +1,27 @@
+{{- if index $.Values "apps" "ingress-nginx" "enabled" }}
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-wave: "-5"
+  name: ingress-nginx
+  namespace: argo
+spec:
+  project: "addons"
+  source:
+    path: addons/ingress-nginx
+    repoURL: {{ .Values.spec.source.repoURL }}
+    targetRevision: {{ .Values.spec.source.targetRevision }}
+    helm:
+      values: |
+        argo-cd:
+          {{- index .Values "ingress-nginx" | toYaml | nindent 10 }}
+  destination:
+    namespace: ingress-nginx
+    server: {{ .Values.spec.destination.server }}
+  {{- if .Values.spec.syncPolicy }}
+  syncPolicy:
+    {{ toYaml .Values.spec.syncPolicy | nindent 4 }}
+  {{- end }}
+{{- end }}
