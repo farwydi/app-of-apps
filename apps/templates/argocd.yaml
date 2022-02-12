@@ -16,7 +16,7 @@ spec:
         argo-cd:
           {{- index .Values "argo-cd" | toYaml | nindent 10 }}
   destination:
-    namespace: argocd
+    namespace: argo
     server: {{ .Values.spec.destination.server }}
   {{- if .Values.spec.syncPolicy }}
   syncPolicy:
