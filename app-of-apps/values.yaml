@@ -20,3 +20,5 @@ apps:
 argocd: {}
 argocd-applicationset: {}
 argocd-notifications: {}
+
+cert-manager: {}
