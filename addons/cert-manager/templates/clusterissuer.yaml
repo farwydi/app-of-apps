@@ -4,7 +4,7 @@
 {{- range $name, $issuer := index $.Values "letsencrypt" "issuers" }}
 ---
 apiVersion: cert-manager.io/v1alpha3
-kind:   
+kind: ClusterIssuer
 metadata:
   name: {{ $name }}
   annotations:
