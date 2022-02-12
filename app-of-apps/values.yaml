@@ -1,0 +1,20 @@
+spec:
+  destination:
+    server: https://kubernetes.default.svc
+  source:
+    repoURL: https://github.com/farwydi/app-of-apps
+    targetRevision: main
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - "CreateNamespace=true"
+
+apps:
+  argocd:
+    enabled: true
+
+argocd: {}
+argocd-applicationset: {}
+argocd-notifications: {}
